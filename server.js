@@ -24,20 +24,26 @@ export function start () {
     process.once('SIGTERM', cleanup);
 
     // Wait for app to be ready before executing the tests
-    Meteor.startup(async () => {
-
+    Meteor.startup(() => {
         // Start testing and collect results
-        const results = await executeTestsCallbacks();
+        executeTestsCallbacks()
+            .catch(err => {
+                // Error thrown at this point means that there is something wrong with test runner.
+                // We can normalize the error and pass it along as a return value
+                console.error(err);
+                return [err];
+            })
+            .then(results => {
+                // We don't need to cleanup on server restart anymore as all tests are completed by now
+                process.removeListener('SIGTERM', cleanup);
 
-        // We don't need to cleanup on server restart anymore as all tests complete gracefully by now
-        process.removeListener('SIGTERM', cleanup);
-
-        // In CI mode we stop Meteor, otherwise (watch mode) we leave it as is
-        if (process.env.CI) {
-            const errors = results.filter(result => result instanceof Error);
-
-            // If any of the onTest callbacks returns an error then app should exit with non 0 exit code
-            process.exit(errors.length > 0 ? 1 : 0);
-        }
+                // In CI mode we stop Meteor, otherwise (watch mode) we leave it as is
+                if (process.env.CI && !Meteor.isPackageTest) {
+                    // Error passed as a one of results means that tests did not pass
+                    // and app should exit with non 0 exit code
+                    const errors = results.filter(result => result instanceof Error);
+                    process.exit(errors.length > 0 ? 1 : 0);
+                }
+            });
     });
 }

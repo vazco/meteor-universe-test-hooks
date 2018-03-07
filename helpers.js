@@ -24,7 +24,7 @@ export const registerCallbacks = callbacks => cb => {
     if (typeof cb !== 'function') {
         throw new Error('You must provide a callback');
     }
-    if (cb.length > 2) {
+    if (cb.length > 1) {
         throw new Error('Callback must have 0 or 1 arguments');
     }
     callbacks.push(cb);
