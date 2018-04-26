@@ -64,12 +64,14 @@ onTest(done => {
 
 ### `onInterrupt`
 
-Its quite ofter that tests are interrupted in the process, e.g. when Meteor restarts due to code change.
+*This method is available only on the server, as there is no purpose for it on the client.*
+
+It's quite often that tests are interrupted in the process, e.g. when Meteor restarts due to code change.
 You may want to react to this situation and do some cleaning, e.g. close browser windows in case of E2E test etc.  
 `onInterrupt` gives you such possibility.
 
-API is consistent with `onTest`.
-In case of async operation you should either return a promise or call `done` when you're done :)
+API is consistent with `onTest`.  
+In case of async operation you should either return a promise or call `done` when you're done.
 Return values are ignored.
 
 ```javascript
@@ -80,7 +82,6 @@ onInterrupt(() => {
 });
 ```
 
-*This method is available only on the server, as there is no purpose for it on the client.*
 
 ## Examples
 

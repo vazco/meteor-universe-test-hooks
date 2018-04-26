@@ -1,6 +1,6 @@
 Package.describe({
     name: 'universe:test-hooks',
-    version: '1.0.0-rc.2',
+    version: '1.0.0',
     summary: 'Provide test hooks for easier Meteor testing within the app',
     git: 'https://github.com/vazco/meteor-test-hooks',
     documentation: 'README.md',
