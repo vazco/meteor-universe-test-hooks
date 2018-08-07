@@ -1,4 +1,8 @@
-# universe:test-hooks (Meteor Test Driver)
+<h1 align="center">
+    <a href="https://github.com/vazco">vazco</a>/Universe Test Hooks (Meteor Test Driver)
+</h1>
+
+&nbsp;
 
 This package is a Meteor Test Driver - special Atmosphere package intended to run in a test command, e.g.
 
@@ -105,3 +109,9 @@ onTest(done => {
     });
 });
 ```
+
+## License
+
+<img src="https://vazco.eu/banner.png" align="right">
+
+**Like every package maintained by [Vazco](https://vazco.eu/), Universe Test Hooks (Meteor Test Driver) is [MIT licensed](https://github.com/vazco/uniforms/blob/master/LICENSE).**
