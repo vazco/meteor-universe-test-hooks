@@ -2,7 +2,7 @@
     <a href="https://github.com/vazco">vazco</a>/Universe Test Hooks (Meteor Test Driver)
 </h1>
 
-&nbsp;
+**[Deprecated] This project is no longer maintained.**
 
 This package is a Meteor Test Driver - special Atmosphere package intended to run in a test command, e.g.
 
